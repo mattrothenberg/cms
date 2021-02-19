@@ -2533,4 +2533,14 @@ class CoreModifiers extends Modifier
 
         return $mapped->toArray();
     }
+
+    public function chunk($value, $params)
+    {
+        return collect($value)
+            ->chunk(Arr::get($params, 0))
+            ->map(function ($chunk) {
+                return Array('chunk' => $chunk);
+            })
+            ->all();
+    }
 }
